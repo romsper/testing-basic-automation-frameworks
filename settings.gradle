@@ -4,4 +4,4 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-rootProject.name = 'qa-automation-bases'
+rootProject.name = 'testing-basic-automation-frameworks'
