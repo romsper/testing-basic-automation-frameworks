@@ -4,10 +4,13 @@ import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.element
 import io.qameta.allure.Step
 import frontend.elements.HeaderElements
-import frontend.helpers.Wrappers.Companion.byDataTestGroup
+import frontend.elements.list.ProductItem
+import frontend.elements.list.ProductItemsHelper
+import frontend.helpers.Wrappers.Companion.byDataTestId
 
 class MainPage {
-    private val btnPopupConfirm get() = element(byDataTestGroup("age-popup-btn"))
+    private val txtTitle get() = element(byDataTestId("main-image-text"))
+    private val listPopularProducts get() = ProductItemsHelper().getProductItems()
 
     @Step("Open main page")
     fun open(): MainPage {
@@ -15,14 +18,18 @@ class MainPage {
         return this
     }
 
-    @Step("Confirm age popup")
-    fun clickAgePopup(): MainPage {
-        btnPopupConfirm.click()
-        return this
+    @Step("Navigate header")
+    fun navigateHeader(): HeaderElements {
+        return HeaderElements()
     }
 
-    @Step("Click on header link")
-    fun goToHeader(): HeaderElements {
-        return HeaderElements()
+    @Step("Get title text")
+    fun getTitleText(): String {
+        return txtTitle.text
+    }
+
+    @Step("Get popular products")
+    fun getPopularProducts(): List<ProductItem> {
+        return listPopularProducts
     }
 }

@@ -10,7 +10,6 @@ open class BaseTest {
     @BeforeEach
     fun openBrowser() {
         Selenide.open("/")
-        sleep(15000)
     }
 
     @AfterEach
