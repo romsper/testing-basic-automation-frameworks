@@ -1,13 +1,13 @@
-package backend.helpers
+package backend.api
 
 import io.qameta.allure.okhttp3.AllureOkHttp3
 import backend.helpers.Properties.Companion.properties
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
 import java.time.Duration
 
 object RetrofitClient {
@@ -26,12 +26,12 @@ object RetrofitClient {
         .addInterceptor(AllureOkHttp3())
         .build()
 
-
+    val kotlinSerialization = Json { ignoreUnknownKeys = false }
     fun <T> createService(service: Class<T>): T =
         Retrofit.Builder()
             .baseUrl(properties.backendUrl)
             .client(client)
-            .addConverterFactory(JacksonConverterFactory.create(ObjectMapper().registerKotlinModule()))
+            .addConverterFactory(kotlinSerialization.asConverterFactory("application/json".toMediaType()))
             .build()
             .create(service)
 }

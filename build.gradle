@@ -1,6 +1,7 @@
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '2.2.10'
+    id 'org.jetbrains.kotlin.jvm' version '2.2.21'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.21'
     id 'io.qameta.allure' version '3.0.0'
     id 'java'
 }
@@ -58,10 +59,8 @@ dependencies {
 
     //Backend
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit2Version
-    implementation group: 'com.squareup.retrofit2', name: 'converter-jackson', version: retrofit2Version
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
-    implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: jacksonVersion
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0'
 
     //Report
     implementation group: 'io.qameta.allure', name: 'allure-okhttp3', version: allureVersion

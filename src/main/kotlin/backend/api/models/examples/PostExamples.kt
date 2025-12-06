@@ -1,4 +1,4 @@
-package backend.models
+package backend.api.models.examples
 
 import io.qameta.allure.Step
 
