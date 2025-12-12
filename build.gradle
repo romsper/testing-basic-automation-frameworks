@@ -41,7 +41,8 @@ def allureVersion = "2.29.1",
     kotestVersion = "6.0.2",
     selenideVersion = '7.10.0',
     retrofit2Version = '3.0.0',
-    jacksonVersion = "2.20.0"
+    jacksonVersion = "2.20.0",
+    exposedVersion = "1.0.0-rc-4"
 
 dependencies {
     agent "org.aspectj:aspectjweaver:1.9.22"
@@ -61,6 +62,11 @@ dependencies {
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit2Version
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0'
+
+    //Database
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.8'
+    implementation group: 'org.jetbrains.exposed', name: 'exposed-core', version: exposedVersion
+    implementation group: 'org.jetbrains.exposed', name: 'exposed-jdbc', version: exposedVersion
 
     //Report
     implementation group: 'io.qameta.allure', name: 'allure-okhttp3', version: allureVersion
