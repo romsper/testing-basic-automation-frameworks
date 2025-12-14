@@ -1,0 +1,12 @@
+# JVM
+allure-report/
+build/
+.idea/
+*.iml
+.gradle/
+target/
+.kotlin
+.gradle
+
+# Node
+node_modules/
