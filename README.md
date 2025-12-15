@@ -3,7 +3,7 @@
 
 ### Description
 
-The repository contains basic projects for automation testing on **Kotlin/Java** and **TypeScript** with examples for **backend**, **frontend**, and **mobile**.
+This repository contains several examples of **Automation testing** frameworks and projects using different programming languages **Kotlin** and **TypeScript/JavaScript** and tools. You can use these examples as a starting point for your own automation projects or as a reference for best practices in QA automation.
 
 ### GitHub Actions
 
