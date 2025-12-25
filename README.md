@@ -11,9 +11,10 @@ You can find examples of **GitHub Actions** workflows for running tests in the `
 
 ### Kotlin
   - [kotlin-retrofit](https://github.com/romsper/qa-automation-bases/tree/kotlin-junit5-retrofit) - Kotlin | Retrofit | Selenide | JDBC | Exposed | JUnit 6 | Allure
+  - [kotlin-feign](https://github.com/romsper/qa-automation-bases/tree/kotlin-junit6-feign) - Kotlin | Feign | Selenide | JDBC | Exposed | JUnit 6 | Allure
+  - [kotlin-testng-rest-assured](https://github.com/romsper/qa-automation-bases/tree/kotlin-testng-rest-assured) - Kotlin | Rest-Assured | Selenide | TestNG | Allure
   - [kotlin-playwright](https://github.com/romsper/qa-automation-base/tree/kotlin-junit5-playwright) - Kotlin | Playwright | JUnit 5 | Allure
   - [kotlin-appium](https://github.com/romsper/qa-automation-bases/tree/kotlin-junit5-appium) - Kotlin | Appium with Selenide | JUnit5 | Allure | Allure EE | TestRail
-  - [kotlin-testng-rest-assured](https://github.com/romsper/qa-automation-bases/tree/kotlin-testng-rest-assured) - Kotlin | Rest-Assured | Selenide | TestNG | Allure
 
 ### TypeScript/JavaScript
   - [ts-playwright](https://github.com/romsper/qa-automation-bases/tree/typescript-playwright-allure) - TypeScript | Playwright | Axios | Allure
@@ -23,7 +24,7 @@ You can find examples of **GitHub Actions** workflows for running tests in the `
 
 [Kotlin](https://kotlinlang.org/docs/reference/) - modern programming language that makes developers happier. It is fully interoperable with Java and is officially supported for Android development.
 
-[JUnit5](https://junit.org/junit5/docs/current/user-guide/) - one of the most popular testing frameworks for Java/Kotlin projects. You can also try [TestNG](https://testng.org/doc/) if you prefer it more.
+[JUnit5](https://junit.org/junit5/docs/current/user-guide/) - one of the most popular testing frameworks for Java/Kotlin projects. You can also try **TestNG** if you prefer it more.
 
 [JUnit6](https://docs.junit.org/current/overview.html) - the next generation of JUnit. It aims to provide a more modern and flexible testing framework for Java/Kotlin projects.
 
@@ -33,13 +34,15 @@ You can find examples of **GitHub Actions** workflows for running tests in the `
 
 [Appium](https://appium.io/) - open-source framework for mobile application testing. It supports both Android and iOS platforms and allows you to write tests using various programming languages, including Kotlin.
 
-[Retrofit](https://square.github.io/retrofit/) - type-safe HTTP client for Android and Java/Kotlin. It makes it easy to consume RESTful web services. It's much faster and easier than Rest-Assured. Also, you can try [Feign](https://github.com/OpenFeign/feign).
+[Retrofit](https://square.github.io/retrofit/) - type-safe HTTP client for Android and Java/Kotlin. It makes it easy to consume RESTful web services. It's much faster and easier than Rest-Assured. Also, you can try **Feign**.
+
+[Feign](https://github.com/OpenFeign/feign) - declarative HTTP client for Java/Kotlin. It simplifies the process of making HTTP requests and handling responses. It's an alternative to **Retrofit**.
 
 [Rest-Assured](https://rest-assured.io/) - popular Java/Kotlin library for testing RESTful web services. It provides a simple and intuitive API for making HTTP requests and validating responses. **Retrofit** is a better choice and more modern.
 
 [Axios](https://axios-http.com/) - promise-based HTTP client for the browser and Node.js. It provides an easy-to-use API for making HTTP requests and handling responses. It's much more modern and better than **Playwright API** requests.
 
-[Kotest](https://github.com/kotest/kotest) - powerful testing framework for Kotlin with a lot of useful features and integrations. You can use it as an alternative to [AssertJ](https://joel-costigliola.github.io/assertj/).
+[Kotest](https://github.com/kotest/kotest) - powerful testing framework for Kotlin with a lot of useful features and integrations. You can use it as an alternative to **AssertJ**.
 
 [Allure](https://allurereport.org) - flexible lightweight multi-language test report tool with the possibility to integrate with many popular CI services such as Jenkins, TeamCity, GitHub Actions, and others.
 
@@ -52,7 +55,12 @@ Almost all tests have `TAGS` annotation that allows you to run specific groups o
 Recommended to use **Docker** and **Docker-Compose** to run **Selenoid** and **Selenoid-UI** for UI tests.
 - [Selenoid and Selenoid-UI](https://aerokube.com/selenoid/latest/#_quick_start) installation guide
 
-### Allure Report
+### Allure Report 2.0
+
+To install **Allure Commandline** follow the instructions from the [official documentation](https://docs.qameta.io/allure/#_installing_a_commandline).
+```bash
+$ brew install allure
+```
 
 To view the **Allure** report after test execution you need to run the following command in the project root folder:
 ```bash
@@ -68,6 +76,17 @@ To generate the **Allure** report without starting a local server use:
 $ allure generate build/allure-results
 ```
 Then open the generated report from the `build/allure-report` folder and click `index.html`.
+
+### Allure Report 3.0 (Beta) 
+
+To install **Allure Commandline 3.0** follow the instructions from the [official documentation](https://docs.qameta.io/allure/#_installing_a_commandline).
+```bash
+$ npm install -g allure
+```
+To view the **Allure 3.0** report after test execution you need to run the following command in the project root folder:
+```bash
+$ npx allure serve build/allure-results
+```
 
 ### Allure + Grafana
 
