@@ -1,10 +1,8 @@
 package database
 
-import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.dao.id.IntIdTable
 
-@Serializable
 data class Product(
     val id: Int,
     val name: String,

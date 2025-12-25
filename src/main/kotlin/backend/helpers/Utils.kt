@@ -1,16 +1,15 @@
 package backend.helpers
 
-import backend.api.RetrofitClient
 import io.qameta.allure.Step
 
 class Utils {
 
     companion object {
 
-        @Step("Convert string to model")
-        inline fun <reified T> String.jsonToObject(model: Class<T>): T {
-            return RetrofitClient.kotlinSerialization.decodeFromString(this)
-        }
+//        @Step("Convert string to model")
+//        inline fun <reified T> String.jsonToObject(model: Class<T>): T {
+//            return RetrofitClient.kotlinSerialization.decodeFromString(this)
+//        }
 
         @Step("Generate random alphanumeric string of given length")
         fun generateRandomString(length: Int): String {

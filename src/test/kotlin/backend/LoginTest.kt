@@ -1,10 +1,9 @@
 package backend
 
-import backend.api.extension.Extensions.Companion.getAsObject
-import backend.api.extension.Extensions.Companion.getErrorAsObject
-import backend.api.models.ErrorResponse
+import backend.api.client.ApiException
 import backend.api.models.errorInvalidCredentials
 import backend.base.Controllers
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.qameta.allure.Feature
@@ -22,7 +21,7 @@ class LoginTest : Controllers {
     @Test
     @DisplayName("User can log in with valid credentials")
     fun testUserCanLogin() {
-        val response = auth.login(email = "random@test.com", password = "random").getAsObject()
+        val response = auth.login(email = "random@test.com", password = "random")
 
         response.accessToken.length shouldBeGreaterThan 10
         response.refreshToken.length shouldBeGreaterThan 10
@@ -31,16 +30,16 @@ class LoginTest : Controllers {
     @Test
     @DisplayName("User cannot log in with invalid credentials")
     fun testUserCannotLoginWithInvalidCredentials() {
-        val response = auth.login(email = "lol", password = "kek").getErrorAsObject<ErrorResponse>()
+        val exception = shouldThrow<ApiException> { auth.login(email = "lol", password = "kek") }
 
-        response shouldBeEqualToComparingFields errorInvalidCredentials
+        exception.error shouldBeEqualToComparingFields errorInvalidCredentials
     }
 
     @Test
     @DisplayName("User cannot log in with empty credentials")
     fun testUserCannotLoginWithEmptyCredentials() {
-        val response = auth.login(email = "", password = "").getErrorAsObject<ErrorResponse>()
+        val exception = shouldThrow<ApiException> { auth.login(email = "", password = "") }
 
-        response shouldBeEqualToComparingFields errorInvalidCredentials
+        exception.error shouldBeEqualToComparingFields errorInvalidCredentials
     }
 }

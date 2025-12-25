@@ -1,10 +1,9 @@
 package backend
 
-import backend.api.extension.Extensions.Companion.getAsObject
-import backend.api.extension.Extensions.Companion.getErrorAsObject
-import backend.api.models.ErrorResponse
+import backend.api.client.ApiException
 import backend.api.models.errorInvalidRefreshToken
 import backend.base.Controllers
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -23,8 +22,8 @@ class RefreshTokenTest : Controllers {
     @Test
     @DisplayName("User can refresh token with valid refresh token")
     fun testUserCanRefreshToken() {
-        val loginResponse = auth.login(email = "random@test.com", password = "random").getAsObject()
-        val refreshResponse = auth.refreshToken(refreshToken = loginResponse.refreshToken).getAsObject()
+        val loginResponse = auth.login(email = "random@test.com", password = "random")
+        val refreshResponse = auth.refreshToken(refreshToken = loginResponse.refreshToken)
 
         refreshResponse.accessToken shouldNotBe loginResponse.accessToken
         refreshResponse.refreshToken shouldNotBe loginResponse.refreshToken
@@ -33,16 +32,16 @@ class RefreshTokenTest : Controllers {
     @Test
     @DisplayName("User cannot refresh token with invalid refresh token")
     fun testUserCannotRefreshTokenWithInvalidRefreshToken() {
-        val response = auth.refreshToken(refreshToken = "").getErrorAsObject<ErrorResponse>()
+        val exception = shouldThrow<ApiException> { auth.refreshToken(refreshToken = "") }
 
-        response shouldBeEqualToComparingFields errorInvalidRefreshToken
+        exception.error shouldBeEqualToComparingFields errorInvalidRefreshToken
     }
 
     @Test
     @DisplayName("User cannot refresh token with null refresh token")
     fun testUserCannotRefreshTokenWithNullRefreshToken() {
-        val response = auth.refreshToken(refreshToken = null)
+        val exception = shouldThrow<ApiException> { auth.refreshToken(refreshToken = null) }
 
-        response.code() shouldBe 400
+        exception.status shouldBe 400
     }
 }
